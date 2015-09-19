@@ -1,0 +1,22 @@
+0.  GIF: 256; JPEG: 2^24; PNG: 2^24; BMP: variable
+1.  Animation supported by GIF and PNG
+2.  Lossless --> no information is lost therefore can reconstruct original information; Lossy --> some information is lost. 
+3.  JPEG
+4.  When file deleted on FAT system, memory it was using added to system's list of "free" memory so that other programs can overwrite it, and the first part of the file is marked as "deleted".
+5.  Write over the memory that was in use by the file.
+6.  stdint.h defines integer types of various sizes in bits, e.g., unint16_t for unsigned 16 bit integer
+7.  to store information? Using the minimum possible bitsize to store the required information can save space.  
+8.  typedef uint8_t  BYTE; 8
+typedef uint32_t DWORD; 32
+typedef int32_t  LONG; 32
+typedef uint16_t WORD; 16
+9.  bf.bfType != 0x4d42
+10. bfsize is size of entire bitmap, whereas bisize is 40 (the size of the info header).
+11. negative biHeight indicates top-down bitmap, i.e., it's stored in memory in same order as it is represented on the screen.
+12. biBitCount
+13. it might return null if trying to write to a read-only file (there may be other reasons I think.. like trying to create a new file but no memory)
+14. because we only want to read one element of data at a time.
+15. 3
+16. sets the file position indicator (i.e., the position in the file the next read or write command will operate on)
+17. SEEK_CUR is the current position of the file position indicator
+18. Milo Banana dun it.

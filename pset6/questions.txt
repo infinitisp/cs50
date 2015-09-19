@@ -1,0 +1,17 @@
+0.  The longest word in the English language (at least of ~2002 when I last cared about such things). Something about a lung disease caused by rare volcanic dust.
+1.  rusage returns a struct containing resource usage statistics used by process calling it. 
+2.  16  
+3.  It' more efficient... you don't have to make a new copy in memory, and don't have to access the portions of the struct you don't use.
+4.  It reads one character at a time, adding it to the current temporary word if it makes sense (i.e., it's an alpha char or ' after first letter). If not, but it is a number, 
+we skip that word (go to first non alphanumeric character and clear temporary word). If the temporary word is empty (index = 0) and we cannot add a character (it is not a alpha char), 
+we read the next character). If the temp word is NOT empty, and we cannot add a character (it is not an alpha char) nor is it a number, then we have a complete word... so check it and
+reset the temporary word. 
+5.  Fscanf is just not as versatile here. Without some testing I'm not sure how %s reacts to a word ending with a period (I imagine it includes the period as part of the string), and
+I can't think of an easy way to skip over alphanumeric words and the like. I'm also not sure how it woudl reach to somethign like "Ok... what now", which would be read as "Ok", "what",
+"now" by our current function. 
+6.  Passing by reference and don't want them to be modified by the function, b/c bad things will happen in the main function when it tries to use the values again.
+7.  Initially a trie, but a hash table turned out faster. I just put the entire dictionary into an array while keeping track of the location of each starting 3 letter combo. So there are 27^3 buckets altogether.
+8.  It was about 0.03 seconds slower than the staff solution initially when using a trie. Switching to hash table made it 3x faster.
+9.  Switched to hash table when I saw how much faster big board was than me. Still has a lot of room for improvement (I can think of ways, but not sure if right ones).
+10. Bottlenecks would be the quality of the hash function (it's a bit arbitrary to use buckets the size of 3 letters -- 4, 5, 6 might be better, at other buckets based on letter "quality" might be better).
+It would also be better to not keep the whole word at the bucket, but only the end of each word (e.g. in bucket "buc" keep "ket" instead of the entire "bucket"). 
